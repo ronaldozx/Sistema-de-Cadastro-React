@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import "./index.css"
-import { useState } from "react";
 import { toast } from "react-toastify";
+import axios from "axios";
 
-export const Modal = ({onCLose,onSubmit,onCancel, onEdit}) => {
+export const Modal = ({onCLose,onSubmit,onCancel,getUsers,onEdit, setOnEdit}) => {
 
     const ref = useRef()
     
@@ -14,30 +14,56 @@ export const Modal = ({onCLose,onSubmit,onCancel, onEdit}) => {
 
             user.nome.value = onEdit.nome;
             user.email.value = onEdit.email;
-            user.telefone.value = onEdit.telefone;
-            user.data_nascimento.value = onEdit.data_nascimento;
+            user.fone.value = onEdit.fone;
 
         }
 
 
     },[onEdit])
 
-    const handleSubmit= async (e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         const user = ref.current;
-
-        if(!user.nome.value ||
-            !user.email.value ||
-            !user.telefone.value ||
-            !user.data_nascimento.value
-        ){
-            return toast.warn("Preencha todos os campos!")
+    
+        if (
+          !user.nome.value ||
+          !user.email.value ||
+          !user.fone.value
+        ) {
+          return toast.warn("Preencha todos os campos!");
         }
-    }
+    
+        if (onEdit) {
+          await axios
+            .put("http://localhost:8800/" + onEdit.id, {
+              nome: user.nome.value,
+              email: user.email.value,
+              fone: user.fone.value,
+            })
+            .then(({ data }) => toast.success(data))
+            .catch(({ data }) => toast.error(data));
+        } else {
+          await axios
+            .post("http://localhost:8800", {
+              nome: user.nome.value,
+              email: user.email.value,
+              fone: user.fone.value,
+            })
+            .then(({ data }) => toast.success(data))
+            .catch(({ data }) => toast.error(data));
+        }
+    
+        user.nome.value = "";
+        user.email.value = "";
+        user.fone.value = "";
+    
+        setOnEdit(null);
+        getUsers();
+      };
 
     return (
-        <form ref={ref}>
+        <form ref={ref} onSubmit={handleSubmit}>
             <div className="modal-container">
                 <div className="modal">
                     <div className="modal-header">
@@ -51,18 +77,11 @@ export const Modal = ({onCLose,onSubmit,onCancel, onEdit}) => {
                             name="nome"
                             
                         />
-
-                        <label>Data de Nascimento</label>
-                        <input 
-                            placeholder=""
-                            name="data_nascimento"
-                           type="date"
-                        />
                         <label>Telefone</label>
                         <input 
                             placeholder=""
                             name="fone"
-                           type="date"
+                           type="fone"
                         />
                         <label>Email</label>
                         <input 
