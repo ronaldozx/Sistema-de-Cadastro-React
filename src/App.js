@@ -1,67 +1,45 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { Modal } from "./componentes/Modal";
-import { Grid } from "./componentes/Grid/index";
-import "react-toastify/dist/ReactToastify.css";
-import styled from "styled-components";
-import { useDisclosure } from "@chakra-ui/react";
-
-const Cadastrar = styled.button`
-    width: 100px;
-    height: 50px;
-    background-color: #3CB371;
-    color: white;
-    border-radius: 10px;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-right: 100px;
-`;
+import React, { useState } from "react";
+import { Modal } from "./componentes/Modal"; 
+import { Grid } from "./componentes/Grid"; 
+import "./App.css"
 
 function App() {
-    const [users, setUsers] = useState([]);
-    const [onEdit, setOnEdit] = useState(null);
-    const { isOpen, onOpen} = useDisclosure(); 
-    const [ modalOpen, setModalOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [onEdit, setOnEdit] = useState(null);
 
-  const handleButtonClick= (user = null) => {
-    setModalOpen(false);
-}
-   
-  
-    
+  const handleModalClose = () => {
+    setIsOpen(false);
+    setOnEdit(null);
+  };
 
-    const getUsers = async () => {
-        try {
-            const res = await axios.get("http://localhost:8800");
-            setUsers(res.data.sort((a, b) => (a.nome > b.nome ? 1 : -1)));
-        } catch (error) {
-            toast.error(error.message);
-        }
-    };
+  const handleEditUser = (user) => {
+    setOnEdit(user);
+    setIsOpen(true);
+  };
 
-    const handleOpenModal = (user = null) => {
-        setOnEdit(user);
-        setModalOpen(true); 
-    };
+  const handleRemove = (id) => {
+    const updatedUsers = users.filter((user) => user.id !== id);
+    setUsers(updatedUsers);
+  };
 
-    useEffect(() => {
-        getUsers();
-    }, []);
+  return (
+    <div className="App">
+        <div className="divBtn"><button className="btn-modal" onClick={() => setIsOpen(true)}>Cadastrar</button></div>
+      
 
-    return (
-        <>
-            <Cadastrar onClick={() => handleOpenModal()}>Cadastrar</Cadastrar>
-            <Grid 
-                users={users} 
-                setUsers={setUsers} 
-               
-            />
-            {modalOpen && (
-            <Modal isOpen={isOpen} onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers} onCancel={handleButtonClick} onCLose={handleButtonClick} />
-          )}
-            </>
-    );
+      {isOpen && (
+        <Modal
+          onClose={handleModalClose}
+          getUsers={setUsers}
+          onEdit={onEdit}
+          setOnEdit={setOnEdit}
+        />
+      )}
+
+      <Grid users={users} onEdit={handleEditUser} onRemove={handleRemove} />
+    </div>
+  );
 }
 
 export { App };

@@ -1,0 +1,46 @@
+.btn-modal{
+    border-color: transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: rgb(54, 255, 47);
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    color: black;
+    font-weight: bold;
+    margin-top: 60px;
+
+}
+.btn-modal:hover{
+    transition: all 1s;
+    border-color: white;
+    background-color: rgb(15, 255, 7);
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+.header{
+    justify-content: center;
+}
+.divBtn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.divTitulo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.titulo{
+    color: black;
+}
+.App{
+    background-color: white;
+    width: 100vw;
+    height: 54.5vw;
+}

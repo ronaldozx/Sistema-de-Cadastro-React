@@ -13,8 +13,8 @@
     background-color: white;
     border-radius: 5px;
     padding: 2rem;
-    width: 30em;
-    height: 30em;
+    width: 25em;
+    height: 25em;
     display: flex;
     flex-direction: column;
 }
@@ -24,7 +24,7 @@
 .modal-header{
     display: flex;
     justify-content: right;
-    margin-right: 30px;
+    margin-right: 10px;
     font-size: 2rem;
 }
 .modal-content{
@@ -32,19 +32,21 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 0px;
     
 }
 .modal-footer{
     display: flex;
     justify-content: space-evenly;
     align-items: end;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 input{
     height: 30px;
     width: 300px;
     border-radius: 5px;
     border-width: 1px;
+    margin-bottom: 20px;
 }
 .btn-cadastrar{
     width: 200px;
@@ -74,4 +76,5 @@ input{
 }
 .close{
     cursor: pointer;
+    margin-top: 0px;
 }

@@ -1,0 +1,101 @@
+.table-responsive {
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+  
+  .table {
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 5px #ccc;
+    border-radius: 5px;
+    max-width: 1120px;
+    margin: 20px auto;
+    word-break: break-all;
+  }
+  
+  .table th,
+  .table td {
+    padding-top: 15px;
+    width: auto ;
+  }
+  
+  
+  .col{
+    background-color: #f2f2f2;
+    text-align: start;
+    justify-content: start;
+    border-bottom: inset;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    border-radius: 10px;
+  }
+  .col-acao{
+    background-color: #f2f2f2;
+    border-bottom: inset;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    border-radius: 10px;
+  }
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .text-center {
+    text-align: center;
+    color: #888;
+  }
+  
+  
+  .btn-edit {
+    background-color: transparent;
+    color: black;
+    border: none;
+    padding: 6px 6px 6px 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+  }
+  
+  .btn-edit svg {
+    width: 18px; 
+    height: 18px; 
+  }
+  
+  .btn-edit:hover {
+    transition: all 1s;
+    background-color: #acacac;
+    color: white;
+
+  }
+  
+  .btn-remove {
+    background-color: transparent;
+    color: black;
+    border: none;
+    padding: 6px 6px 6px 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+  }
+  
+  .btn-remove svg {
+    width: 18px; 
+    height: 18px; 
+  }
+  
+  .btn-remove:hover {
+    transition: all 1s;
+    background-color: #a86f6f;
+    color: white;
+  }
+  .btn{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
