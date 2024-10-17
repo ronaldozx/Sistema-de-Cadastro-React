@@ -13,8 +13,8 @@
 }
 .btn-modal:hover{
     transition: all 1s;
-    border-color: white;
-    background-color: rgb(15, 255, 7);
+    border-color: transparent;
+    background-color: rgb(14, 172, 9);
     border-radius: 10px;
     width: 100px;
     height: 40px;
